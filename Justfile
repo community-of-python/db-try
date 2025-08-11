@@ -28,5 +28,6 @@ lint-ci:
 
 publish:
     rm -rf dist
+    uv version $GITHUB_REF_NAME
     uv build
     uv publish --token $PYPI_TOKEN
