@@ -20,7 +20,7 @@ jobs:
         with:
           enable-cache: true
           cache-dependency-glob: "**/pyproject.toml"
-      - run: uv python install 3.10
+      - run: uv python install 3.13
       - run: just install lint-ci
 
   pytest:

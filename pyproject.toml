@@ -1,11 +1,11 @@
 [project]
-name = "modern-pg"
-description = "PostgreSQL Tools"
+name = "db-try"
+description = "PostgreSQL and SQLAlchemy Tools"
 authors = [
-    { name = "Artur Shiriev", email = "me@shiriev.ru" },
+    { name = "community-of-python" },
 ]
 readme = "README.md"
-requires-python = ">=3.10,<4"
+requires-python = ">=3.13,<4"
 license = "MIT"
 keywords = [
     "python",
@@ -13,10 +13,8 @@ keywords = [
     "sqlalchemy",
 ]
 classifiers = [
-    "Programming Language :: Python :: 3.10",
-    "Programming Language :: Python :: 3.11",
-    "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
     "Typing :: Typed",
     "Topic :: Software Development :: Libraries",
 ]
@@ -30,11 +28,13 @@ dependencies = [
 [project.urls]
 repository = "https://github.com/modern-python/sa-utils"
 
-[tool.uv]
-dev-dependencies = [
+[dependency-groups]
+dev = [
     "pytest",
     "pytest-cov",
     "pytest-asyncio",
+]
+lint = [
     "asyncpg-stubs",
     "ruff",
     "mypy",
@@ -45,18 +45,18 @@ requires = ["uv_build"]
 build-backend = "uv_build"
 
 [tool.uv.build-backend]
-module-name = "modern_pg"
+module-name = "db_try"
 module-root = ""
 
 [tool.mypy]
-python_version = "3.10"
+python_version = "3.13"
 strict = true
 
 [tool.ruff]
 fix = false
 unsafe-fixes = true
 line-length = 120
-target-version = "py310"
+target-version = "py313"
 
 [tool.ruff.format]
 docstring-code-format = true
