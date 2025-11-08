@@ -71,7 +71,7 @@ def build_connection_factory(
                     target_session_attrs=target_session_attrs,
                 )
                 return connection  # noqa: TRY300
-            except (TimeoutError, OSError, asyncpg.TargetServerAttributeNotMatched) as exc:  # noqa: PERF203
+            except (TimeoutError, OSError, asyncpg.TargetServerAttributeNotMatched) as exc:
                 logger.warning("Failed to fetch asyncpg connection from %s, %s", one_host, exc)
         msg: typing.Final = f"None of the hosts match the target attribute requirement {target_session_attrs}"
         raise asyncpg.TargetServerAttributeNotMatched(msg)

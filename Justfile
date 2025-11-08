@@ -14,7 +14,7 @@ build:
 
 install:
     uv lock --upgrade
-    uv sync --all-extras --frozen
+    uv sync --all-extras --all-groups --frozen
 
 lint:
     uv run --frozen ruff format
