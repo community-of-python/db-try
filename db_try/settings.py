@@ -2,4 +2,4 @@ import os
 import typing
 
 
-DB_UTILS_RETRIES_NUMBER: typing.Final = int(os.getenv("DB_UTILS_RETRIES_NUMBER", "3"))
+DB_TRY_RETRIES_NUMBER: typing.Final = int(os.getenv("DB_TRY_RETRIES_NUMBER", "3"))
