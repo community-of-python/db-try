@@ -165,9 +165,9 @@ async def main():
 
 The library can be configured using environment variables:
 
-| Variable                  | Description                                      | Default |
-|---------------------------|--------------------------------------------------|---------|
-| `DB_UTILS_RETRIES_NUMBER` | Number of retry attempts for database operations | 3       |
+| Variable                | Description                                      | Default |
+|-------------------------|--------------------------------------------------|---------|
+| `DB_TRY_RETRIES_NUMBER` | Number of retry attempts for database operations | 3       |
 
 Example:
 ```bash

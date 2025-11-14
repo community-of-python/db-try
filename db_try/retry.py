@@ -29,7 +29,7 @@ def postgres_retry[**P, T](
     func: typing.Callable[P, typing.Coroutine[None, None, T]],
 ) -> typing.Callable[P, typing.Coroutine[None, None, T]]:
     @tenacity.retry(
-        stop=tenacity.stop_after_attempt(settings.DB_UTILS_RETRIES_NUMBER),
+        stop=tenacity.stop_after_attempt(settings.DB_TRY_RETRIES_NUMBER),
         wait=tenacity.wait_exponential_jitter(),
         retry=tenacity.retry_if_exception(_retry_handler),
         reraise=True,
