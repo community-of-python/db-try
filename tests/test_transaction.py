@@ -4,7 +4,7 @@ import typing
 import pytest
 from sqlalchemy.ext import asyncio as sa_async
 
-from db_try import Transaction
+from db_retry import Transaction
 
 
 @pytest.fixture

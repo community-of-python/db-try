@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-This is a Python library called `db-try` that provides PostgreSQL and SQLAlchemy utilities, specifically focusing on:
+This is a Python library called `db-retry` that provides PostgreSQL and SQLAlchemy utilities, specifically focusing on:
 
 1. **Retry decorators** for handling database connection issues and serialization errors
 2. **Connection factory builders** for managing PostgreSQL connections with multiple hosts
@@ -25,7 +25,7 @@ The library is built with modern Python practices (3.13+) and uses type hints ex
 ## Project Structure
 
 ```
-db_try/
+db_retry/
 ├── __init__.py          # Exports all public APIs
 ├── connections.py       # Connection factory builders
 ├── dsn.py               # DSN parsing and manipulation utilities

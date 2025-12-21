@@ -6,7 +6,7 @@ import asyncpg
 import tenacity
 from sqlalchemy.exc import DBAPIError
 
-from db_try import settings
+from db_retry import settings
 
 
 logger = logging.getLogger(__name__)
@@ -29,7 +29,7 @@ def postgres_retry[**P, T](
     func: typing.Callable[P, typing.Coroutine[None, None, T]],
 ) -> typing.Callable[P, typing.Coroutine[None, None, T]]:
     @tenacity.retry(
-        stop=tenacity.stop_after_attempt(settings.DB_TRY_RETRIES_NUMBER),
+        stop=tenacity.stop_after_attempt(settings.DB_RETRY_RETRIES_NUMBER),
         wait=tenacity.wait_exponential_jitter(),
         retry=tenacity.retry_if_exception(_retry_handler),
         reraise=True,

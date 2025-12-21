@@ -1,6 +1,6 @@
 import typing
 
-from db_try import build_db_dsn, is_dsn_multihost
+from db_retry import build_db_dsn, is_dsn_multihost
 
 
 def test_build_db_dsn() -> None:

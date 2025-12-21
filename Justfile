@@ -17,14 +17,16 @@ install:
     uv sync --all-extras --all-groups --frozen
 
 lint:
-    uv run --frozen ruff format
-    uv run --frozen ruff check --fix
-    uv run --frozen mypy .
+    uv run eof-fixer .
+    uv run ruff format
+    uv run ruff check --fix
+    uv run mypy .
 
 lint-ci:
-    uv run --frozen ruff format --check
-    uv run --frozen ruff check --no-fix
-    uv run --frozen mypy .
+    uv run eof-fixer . --check
+    uv run ruff format --check
+    uv run ruff check --no-fix
+    uv run mypy .
 
 publish:
     rm -rf dist

@@ -7,7 +7,7 @@ import pytest
 import sqlalchemy
 from sqlalchemy.ext import asyncio as sa_async
 
-from db_try.connections import build_connection_factory
+from db_retry.connections import build_connection_factory
 
 
 async def test_connection_factory_success() -> None:
