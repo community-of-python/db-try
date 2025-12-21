@@ -3,7 +3,7 @@ import sqlalchemy
 from sqlalchemy.exc import DBAPIError
 from sqlalchemy.ext import asyncio as sa_async
 
-from db_try.retry import postgres_retry
+from db_retry.retry import postgres_retry
 
 
 @pytest.mark.parametrize(

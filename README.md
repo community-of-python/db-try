@@ -1,4 +1,4 @@
-# db-try
+# db-retry
 
 A Python library providing robust retry mechanisms, connection utilities, and transaction helpers for PostgreSQL and SQLAlchemy applications.
 
@@ -14,13 +14,13 @@ A Python library providing robust retry mechanisms, connection utilities, and tr
 ### Using uv
 
 ```bash
-uv add db-try
+uv add db-retry
 ```
 
 ### Using pip
 
 ```bash
-pip install db-try
+pip install db-retry
 ```
 
 ## ORM-Based Usage Examples
@@ -34,14 +34,16 @@ import asyncio
 import sqlalchemy as sa
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
-from db_try import postgres_retry
+from db_retry import postgres_retry
+
 
 class User(DeclarativeBase):
     __tablename__ = "users"
-    
+
     id: Mapped[int] = mapped_column(primary_key=True)
     name: Mapped[str] = mapped_column(sa.String())
     email: Mapped[str] = mapped_column(sa.String(), index=True)
+
 
 # Apply retry logic to ORM operations
 @postgres_retry
@@ -59,6 +61,7 @@ async def main():
         if user:
             print(f"Found user: {user.name}")
 
+
 asyncio.run(main())
 ```
 
@@ -70,8 +73,7 @@ Set up resilient database connections with multiple fallback hosts:
 import sqlalchemy as sa
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
-from db_try import build_connection_factory, build_db_dsn
-
+from db_retry import build_connection_factory, build_db_dsn
 
 # Configure multiple database hosts for high availability
 multi_host_dsn = (
@@ -91,7 +93,7 @@ dsn = build_db_dsn(
 
 # Create connection factory with timeout
 connection_factory = build_connection_factory(
-    url=dsn, 
+    url=dsn,
     timeout=5.0  # 5 second connection timeout
 )
 
@@ -109,7 +111,7 @@ import datetime
 import typing
 
 from schemas import AnalyticsEventCreate, AnalyticsEvent
-from db_try import Transaction, postgres_retry
+from db_retry import Transaction, postgres_retry
 
 from your_service_name.database.tables import EventsTable
 from your_service_name.producers.analytics_service_events_producer import AnalyticsEventsProducer
@@ -125,8 +127,8 @@ class CreateEventUseCase:
 
     @postgres_retry
     async def __call__(
-        self,
-        event_create_data: AnalyticsEventCreate,
+            self,
+            event_create_data: AnalyticsEventCreate,
     ) -> AnalyticsEvent:
         async with self.transaction:
             model: typing.Final = EventsTable(
@@ -147,12 +149,12 @@ Use serializable isolation level to prevent race conditions with ORM:
 
 ```python
 from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
-from db_try import Transaction
+from db_retry import Transaction
 
 
 async def main():
     engine = create_async_engine("postgresql+asyncpg://user:pass@localhost/mydb")
-    
+
     async with AsyncSession(engine) as session:
         strict_transaction = Transaction(
             session=session,
@@ -167,7 +169,7 @@ The library can be configured using environment variables:
 
 | Variable                | Description                                      | Default |
 |-------------------------|--------------------------------------------------|---------|
-| `DB_TRY_RETRIES_NUMBER` | Number of retry attempts for database operations | 3       |
+| `DB_RETRY_RETRIES_NUMBER` | Number of retry attempts for database operations | 3       |
 
 Example:
 ```bash

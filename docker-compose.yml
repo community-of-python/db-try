@@ -5,7 +5,8 @@ services:
       dockerfile: ./Dockerfile
     restart: always
     volumes:
-      - .:/srv/www/
+      - .:/code
+      - /code/.venv
     depends_on:
       db:
         condition: service_healthy

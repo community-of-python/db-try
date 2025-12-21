@@ -1,5 +1,5 @@
 [project]
-name = "db-try"
+name = "db-retry"
 description = "PostgreSQL and SQLAlchemy Tools"
 authors = [
     { name = "community-of-python" },
@@ -35,9 +35,10 @@ dev = [
     "pytest-asyncio",
 ]
 lint = [
-    "asyncpg-stubs",
     "ruff",
     "mypy",
+    "eof-fixer",
+    "asyncpg-stubs",
 ]
 
 [build-system]
@@ -45,7 +46,7 @@ requires = ["uv_build"]
 build-backend = "uv_build"
 
 [tool.uv.build-backend]
-module-name = "db_try"
+module-name = "db_retry"
 module-root = ""
 
 [tool.mypy]
